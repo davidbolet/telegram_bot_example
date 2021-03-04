@@ -10,6 +10,7 @@ package org.telegram.database;
 import org.telegram.BuildVars;
 import org.telegram.telegrambots.meta.logging.BotLogger;
 
+import java.lang.reflect.InvocationTargetException;
 import java.sql.*;
 
 /**
@@ -25,12 +26,12 @@ public class ConectionDB {
         this.currentConection = openConexion();
     }
 
-    private Connection openConexion() {
+    private Connection openConexion()  {
         Connection connection = null;
         try {
-            Class.forName(BuildVars.controllerDB).newInstance();
+            Class.forName(BuildVars.controllerDB).getDeclaredConstructor().newInstance();
             connection = DriverManager.getConnection(BuildVars.linkDB, BuildVars.userDB, BuildVars.password);
-        } catch (SQLException | ClassNotFoundException | IllegalAccessException | InstantiationException e) {
+        } catch (SQLException | ClassNotFoundException | IllegalAccessException | InstantiationException | NoSuchMethodException | InvocationTargetException e) {
             BotLogger.error(LOGTAG, e);
         }
 

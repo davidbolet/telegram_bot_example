@@ -1,5 +1,7 @@
 package org.telegram;
 
+import org.telegram.database.DatabaseManager;
+import org.telegram.structure.WeatherAlert;
 import org.telegram.telegrambots.ApiContextInitializer;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
@@ -8,6 +10,7 @@ import org.telegram.telegrambots.meta.logging.BotsFileHandler;
 import org.telegram.updateshandlers.*;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.Level;
 
@@ -25,6 +28,8 @@ public class Main {
 
         try {
             ApiContextInitializer.init();
+            List<WeatherAlert> alerts = DatabaseManager.getInstance().getAllAlerts();
+            System.out.println(alerts.size());
             TelegramBotsApi telegramBotsApi = createTelegramBotsApi();
             try {
                 // Register long polling bots. They work regardless type of TelegramBotsApi we are creating
