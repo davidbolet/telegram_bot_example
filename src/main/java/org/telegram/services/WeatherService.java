@@ -33,7 +33,7 @@ public class WeatherService {
     public static final String IMPERIALSYSTEM = "imperial";
 
     private static final String BASEURL = "http://api.openweathermap.org/data/2.5/"; ///< Base url for REST
-    private static final String FORECASTPATH = "forecast/daily";
+    private static final String FORECASTPATH = "forecast";
     private static final String CURRENTPATH = "weather";
     private static final String APIIDEND = "&APPID=" + BuildVars.OPENWEATHERAPIKEY;
     private static final String FORECASTPARAMS = "&cnt=3&units=@units@&lang=@language@";
