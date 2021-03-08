@@ -528,7 +528,7 @@ public class DatabaseManager {
     private boolean addNewUserWeatherOptions(Integer userId) {
         int updatedRows = 0;
         try {
-            final PreparedStatement preparedStatement = connetion.getPreparedStatement("INSERT INTO UserWeatherOptions (userId) VALUES (?)");
+            final PreparedStatement preparedStatement = connetion.getPreparedStatement("INSERT INTO UserWeatherOptions(userId) VALUES (?)");
             preparedStatement.setInt(1, userId);
             updatedRows = preparedStatement.executeUpdate();
         } catch (SQLException e) {

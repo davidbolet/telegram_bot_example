@@ -57,7 +57,7 @@ public class WeatherHandlers extends TelegramLongPollingBot {
     }
 
     @Override
-    public void onUpdateReceived(Update update) {
+    public synchronized void onUpdateReceived(Update update) {
         try {
             if (update.hasMessage()) {
                 Message message = update.getMessage();
@@ -135,7 +135,7 @@ public class WeatherHandlers extends TelegramLongPollingBot {
 
     // region Incoming messages handlers
 
-    private void handleIncomingMessage(Message message) throws TelegramApiException {
+    private synchronized void handleIncomingMessage(Message message) throws TelegramApiException {
         final int state = DatabaseManager.getInstance().getWeatherState(message.getFrom().getId(), message.getChatId());
         final String language = DatabaseManager.getInstance().getUserWeatherOptions(message.getFrom().getId())[0];
         if (!message.isUserMessage() && message.hasText()) {
@@ -208,7 +208,7 @@ public class WeatherHandlers extends TelegramLongPollingBot {
 
     // region Alerts Menu Option selected
 
-    private static SendMessage messageOnAlert(Message message, String language, int state) {
+    private synchronized static SendMessage messageOnAlert(Message message, String language, int state) {
         SendMessage sendMessageRequest = null;
         switch(state) {
             case ALERT:

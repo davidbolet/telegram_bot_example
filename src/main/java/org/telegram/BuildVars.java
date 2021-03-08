@@ -33,7 +33,7 @@ public class BuildVars {
     public static final String linkDB = "jdbc:mysql://localhost:3306/weather?&useUnicode=true&characterEncoding=UTF-8";
     public static final String controllerDB = "com.mysql.cj.jdbc.Driver";
     public static final String userDB = "root";
-    public static final String password = "admin"; // "karrabi23";
+    public static final String password = "karrabi23"; // "admin";
 
     static {
         // Add elements to ADMIN array here
